@@ -455,7 +455,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 
 ## Database Schema
 
-![Database Schema](database_schema.png)
+![Database Schema](database_scheme.png)
 
 ## HTTP Status Codes
 
