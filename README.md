@@ -90,7 +90,8 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
       "title": "string",
       "author": {
         "id": 1,
-        "name": "string"
+        "name": "string",
+        "href": "/api/authors/1"
       },
       "price": 0.5,
       "genre": "string",
@@ -150,6 +151,29 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 }
 ```
 - **Response**: `201 Created`
+```json
+{
+  "id": 1,
+  "title": "string",
+  "author": {
+    "id": 1,
+    "name": "string",
+    "href": "/api/authors/1"
+  },
+  "publisher": {
+    "id": 1,
+    "name": "string",
+    "href": "/api/publishers/1"
+  },
+  "isbn": "string",
+  "price": 19.99,
+  "genre": "string",
+  "publication_year": 2020,
+  "pages": 332,
+  "language": "string",
+  "stock_quantity": 12
+}
+```
 
 #### Update Book (Admin only)
 - **PUT** `/api/books/{id}`
@@ -247,7 +271,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 
 #### Get Publisher Details
 - **GET** `/api/publishers/{id}`
-- **Description**: Get publisher details with their books
+- **Description**: Get publisher details
 - **Response**: `200 OK`
 ```json
 {
@@ -255,16 +279,16 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
   "name": "string",
   "description": "string",
   "website": "string",
-  "books": [
-    {
-      "id": 1,
-      "title": "string",
-      "author_name": "string",
-      "price": 12.32
-    }
-  ]
+  "established": 1995,
+  "country": "string"
 }
 ```
+
+#### Get Publisher's Books
+- **GET** `/api/publishers/{id}/books`
+- **Description**: Get paginated list of books by publisher
+- **Query Parameters**: Same as List Books endpoint
+- **Response**: `200 OK` (same structure as List Books)
 
 #### Create Publisher (Admin only)
 - **POST** `/api/publishers`
@@ -315,6 +339,12 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 }
 ```
 
+#### Get User's Cart (Admin only)
+- **GET** `/api/users/{user_id}/cart`
+- **Description**: View any user's cart (admin only)
+- **Headers**: `Authorization: Token <admin_token>`
+- **Response**: `200 OK` (same structure as Get Cart)
+
 #### Add to Cart
 - **POST** `/api/cart/items`
 - **Description**: Add book to cart
@@ -330,7 +360,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 
 #### Update Cart Item
 - **PUT** `/api/cart/items/{id}`
-- **Description**: Update quantity of item in cart
+- **Description**: Update quantity of a specific cart item by its cart item ID
 - **Headers**: `Authorization: Token <token>`
 - **Request Body**:
 ```json
@@ -343,12 +373,6 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 #### Remove from Cart
 - **DELETE** `/api/cart/items/{id}`
 - **Description**: Remove item from cart
-- **Headers**: `Authorization: Token <token>`
-- **Response**: `204 No Content`
-
-#### Clear Cart
-- **DELETE** `/api/cart`
-- **Description**: Remove all items from cart
 - **Headers**: `Authorization: Token <token>`
 - **Response**: `204 No Content`
 
@@ -400,6 +424,36 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 - **Headers**: `Authorization: Token <token>`
 - **Response**: `200 OK`
 
+#### List All Orders (Admin only)
+- **GET** `/api/admin/orders`
+- **Description**: Get all orders in the system
+- **Headers**: `Authorization: Token <admin_token>`
+- **Query Parameters**:
+  - `user_id` (integer): Filter by user
+  - `status` (string): Filter by status
+  - `page` (integer): Page number
+- **Response**: `200 OK`
+```json
+{
+  "count": 150,
+  "next": "http://api/admin/orders?page=2",
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "order_number": "ORD-2025-001",
+      "user": {
+        "id": 1,
+        "username": "string"
+      },
+      "created_at": "2025-01-30T10:00:00Z",
+      "status": "pending",
+      "total": 59.75
+    }
+  ]
+}
+```
+
 ### User Profile
 
 #### Get Profile
@@ -433,6 +487,12 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 }
 ```
 - **Response**: `200 OK`
+
+#### Get Any User's Profile (Admin only)
+- **GET** `/api/users/{user_id}/profile`
+- **Description**: View any user's profile (admin only)
+- **Headers**: `Authorization: Token <admin_token>`
+- **Response**: `200 OK` (same structure as Get Profile)
 
 ### Static Pages
 
@@ -478,6 +538,7 @@ Authorization: Token <your_token_here>
 ## Technologies
 
 - Django REST Framework
+- React
 - PostgreSQL
 - Token Authentication
 ```
