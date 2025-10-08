@@ -38,12 +38,6 @@ class BookListCreateView(APIView):
         if max_price:
             books = books.filter(price__lte=max_price)
 
-        # Ordering
-        ordering = request.query_params.get("ordering", "title")
-        allowed_orderings = ["price", "-price", "title", "-title", "genre", "-genre"]
-        if ordering in allowed_orderings:
-            books = books.order_by(ordering)
-
         serializer = BookListSerializer(books, many=True)
         return Response(serializer.data)
 

@@ -26,6 +26,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
   "username": "string",
   "email": "string",
   "password": "string",
+  "password_check": "string",
   "first_name": "string",
   "last_name": "string"
 }
@@ -75,7 +76,6 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
   - `publisher` (integer): Filter by publisher ID
   - `min_price` (decimal): Minimum price filter
   - `max_price` (decimal): Maximum price filter
-  - `ordering` (string): Sort by `price`, `-price`, `popularity`, `genre`
   - `page` (integer): Page number
   - `limit` (integer): Items per page
 - **Response**: `200 OK`
@@ -388,8 +388,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
   "id": 1,
   "order_number": "ORD-2025-001",
   "created_at": "2025-09-30T10:00:00Z",
-  "status": "pending",
-  "total": 59.75,
+  "subtotal": 59.75,
   "items": [
     {
       "book_title": "string",
@@ -412,8 +411,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
     "id": 1,
     "order_number": "ORD-2025-001",
     "created_at": "2025-01-30T10:00:00Z",
-    "status": "delivered",
-    "total": 59.75
+    "subtotal": 59.75
   }
 ]
 ```
@@ -447,8 +445,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
         "username": "string"
       },
       "created_at": "2025-01-30T10:00:00Z",
-      "status": "pending",
-      "total": 59.75
+      "subtotal": 59.75
     }
   ]
 }
@@ -468,8 +465,6 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
   "email": "string",
   "first_name": "string",
   "last_name": "string",
-  "phone": "string",
-  "address": "string"
 }
 ```
 
@@ -482,8 +477,7 @@ A RESTful API for an online bookstore that provides comprehensive book managemen
 {
   "first_name": "string",
   "last_name": "string",
-  "phone": "string",
-  "address": "string"
+  "email": "string",
 }
 ```
 - **Response**: `200 OK`
