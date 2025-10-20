@@ -5,7 +5,7 @@ from .models import Publisher
 class GetPublisherList(serializers.ModelSerializer):
     class Meta:
         model = Publisher
-        fields = ["id", "name", "description", "website"]
+        fields = ["id", "name", "description", "website", "country"]
 
 
 class GetPublisherDetails(serializers.ModelSerializer):
