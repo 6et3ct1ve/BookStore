@@ -1,0 +1,58 @@
+.error-message {
+  background-color: rgba(140, 75, 75, 0.2);
+  border: 2px solid var(--stalker-error);
+  border-radius: 0;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(140, 75, 75, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.error-message::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(140, 75, 75, 0.3),
+    transparent
+  );
+  animation: slide 2s infinite;
+}
+
+@keyframes slide {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.error-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 0 10px rgba(140, 75, 75, 0.8));
+  animation: flicker 3s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.error-message p {
+  margin: 0;
+  color: #ff6b6b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
