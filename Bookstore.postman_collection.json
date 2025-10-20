@@ -1,0 +1,218 @@
+{
+  "info": {
+    "name": "BookStore API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Books",
+      "item": [
+        {
+          "name": "Get All Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/books/?search=&genre=&min_price=&max_price=&ordering=",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "books", ""],
+              "query": [
+                {"key": "search", "value": ""},
+                {"key": "genre", "value": ""},
+                {"key": "min_price", "value": ""},
+                {"key": "max_price", "value": ""},
+                {"key": "ordering", "value": ""}
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Book Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/books/1/"
+          }
+        },
+        {
+          "name": "Create Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Test Book\",\n  \"author_id\": 1,\n  \"publisher_id\": 1,\n  \"isbn\": \"978-3-16-148410-0\",\n  \"description\": \"Test description\",\n  \"price\": 19.99,\n  \"genre\": \"Fantasy\",\n  \"publication_year\": 2020,\n  \"pages\": 300,\n  \"language\": \"English\",\n  \"stock_quantity\": 10\n}"
+            },
+            "url": "http://127.0.0.1:8000/api/books/"
+          }
+        },
+        {
+          "name": "Update Book",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Book\",\n  \"author_id\": 1,\n  \"publisher_id\": 1,\n  \"isbn\": \"978-3-16-148410-0\",\n  \"description\": \"Updated description\",\n  \"price\": 29.99,\n  \"genre\": \"Fantasy\",\n  \"publication_year\": 2020,\n  \"pages\": 350,\n  \"language\": \"English\",\n  \"stock_quantity\": 5\n}"
+            },
+            "url": "http://127.0.0.1:8000/api/books/1/"
+          }
+        },
+        {
+          "name": "Delete Book",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/books/1/"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authors",
+      "item": [
+        {
+          "name": "Get All Authors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/authors/"
+          }
+        },
+        {
+          "name": "Get Author Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/authors/1/"
+          }
+        },
+        {
+          "name": "Create Author",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Author\",\n  \"biography\": \"Test bio\",\n  \"birth_year\": 1980,\n  \"nationality\": \"American\"\n}"
+            },
+            "url": "http://127.0.0.1:8000/api/authors/"
+          }
+        },
+        {
+          "name": "Update Author",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Author\",\n  \"biography\": \"Updated bio\",\n  \"birth_year\": 1980,\n  \"nationality\": \"British\"\n}"
+            },
+            "url": "http://127.0.0.1:8000/api/authors/1/"
+          }
+        },
+        {
+          "name": "Delete Author",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/authors/1/"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Publishers",
+      "item": [
+        {
+          "name": "Get All Publishers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/publishers/"
+          }
+        },
+        {
+          "name": "Get Publisher Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/publishers/1/"
+          }
+        },
+        {
+          "name": "Get Publisher Books",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/publishers/1/books/"
+          }
+        },
+        {
+          "name": "Create Publisher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test Publisher\",\n  \"description\": \"Test description\",\n  \"website\": \"https://example.com\",\n  \"established\": 2000,\n  \"country\": \"USA\"\n}"
+            },
+            "url": "http://127.0.0.1:8000/api/publishers/"
+          }
+        },
+        {
+          "name": "Update Publisher",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Publisher\",\n  \"description\": \"Updated description\",\n  \"website\": \"https://updated.com\",\n  \"established\": 2005,\n  \"country\": \"UK\"\n}"
+            },
+            "url": "http://127.0.0.1:8000/api/publishers/1/"
+          }
+        },
+        {
+          "name": "Delete Publisher",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "http://127.0.0.1:8000/api/publishers/1/"
+          }
+        }
+      ]
+    }
+  ]
+}
